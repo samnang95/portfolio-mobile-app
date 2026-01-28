@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio_app/app/core/constants/app_images.dart';
 import 'package:portfolio_app/app/modules/splash/splash_controller.dart';
 
 class SplashPage extends GetView<SplashController> {
@@ -9,9 +10,22 @@ class SplashPage extends GetView<SplashController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(
-          'Splash Page',
-          style: Theme.of(context).textTheme.bodyLarge,
+        child: AnimatedBuilder(
+          animation: controller.animationController,
+          builder: (context, child) {
+            return Transform.scale(
+              scale: controller.scaleAnimation.value,
+              child: Opacity(
+                opacity: controller.opacityAnimation.value,
+                child: Image.asset(
+                  AppImages.logo,
+                  fit: BoxFit.cover,
+                  width: 200,
+                  height: 200,
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
