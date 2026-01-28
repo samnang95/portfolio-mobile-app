@@ -3,12 +3,15 @@ import 'package:get/get.dart';
 import 'package:portfolio_app/app/core/constants/app_images.dart';
 import 'package:portfolio_app/app/modules/splash/splash_controller.dart';
 
+import '../../core/constants/app_colors.dart';
+
 class SplashPage extends GetView<SplashController> {
   const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColors,
       body: Center(
         child: AnimatedBuilder(
           animation: controller.animationController,
