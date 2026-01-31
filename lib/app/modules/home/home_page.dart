@@ -4,6 +4,7 @@ import 'package:portfolio_app/app/modules/home/home_controller.dart';
 import 'package:portfolio_app/app/modules/home/widgets/title_list.dart';
 
 import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_images.dart';
 import '../all/all_page.dart';
 import '../contact/contact_page.dart';
 import '../cv/cv_page.dart';
@@ -19,7 +20,7 @@ class HomePage extends GetView<HomeController> {
       appBar: AppBar(backgroundColor: AppColors.bgColors),
       backgroundColor: AppColors.bgColors,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -101,13 +102,39 @@ class HomePage extends GetView<HomeController> {
               onPageChanged: (index) => controller.selectTab(index),
               physics: BouncingScrollPhysics(),
               children: [
-                _buildAllPage(),
-                _buildSkillsPage(),
-                _buildProjectsPage(),
-                _buildContactsPage(),
-                _buildCVPage(),
+                AllPage(),
+                SkillPage(),
+                ProjectPage(),
+                ContactPage(),
+                CvPage(),
               ],
             ),
+          ),
+          Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: PageView(
+                  children: [
+                    Image.asset(AppImages.s1, fit: BoxFit.cover),
+                    Image.asset(AppImages.s2, fit: BoxFit.cover),
+                    Image.asset(AppImages.s3, fit: BoxFit.cover),
+                  ],
+                ),
+              ),
+              Container(width: double.infinity, height: 1, color: Colors.grey),
+              Container(
+                width: double.infinity,
+                height: 50,
+                color: AppColors.buttonColors,
+                alignment: Alignment.center,
+                child: Text(
+                  "© 2024 Develop by ThangChii.",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -128,25 +155,5 @@ class HomePage extends GetView<HomeController> {
         ),
       ),
     );
-  }
-
-  Widget _buildAllPage() {
-    return AllPage();
-  }
-
-  Widget _buildSkillsPage() {
-    return SkillPage();
-  }
-
-  Widget _buildProjectsPage() {
-    return ProjectPage();
-  }
-
-  Widget _buildContactsPage() {
-    return ContactPage();
-  }
-
-  Widget _buildCVPage() {
-    return CvPage();
   }
 }
